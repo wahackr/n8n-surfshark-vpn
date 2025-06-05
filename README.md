@@ -27,5 +27,8 @@ docker build -t n8n-surfshark:latest .
 
 ### Start Container
 `
-docker run -it --name n8n_surfshark_dev --restart always -p 5678:5678 -v n8n_data:/home/node/.n8n -e GENERIC_TIMEZONE="Asia/Hong_Kong" -e TZ="Asia/Hong_Kong" -e N8N_SECURE_COOKIE=false -e WEBHOOK_URL="http://n8n.alohaonline.asia:5678" --cap-add=NET_ADMIN --device=/dev/net/tun -it n8n-surfshark
+docker run -it --name n8n_surfshark_dev --restart always -p 5678:5678 -v n8n_data:/home/node/.n8n -e N8N_USER_FOLDER=/home/node -e GENERIC_TIMEZONE="Asia/Hong_Kong" -e TZ="Asia/Hong_Kong" -e N8N_SECURE_COOKIE=false -e WEBHOOK_URL="http://n8n.alohaonline.asia:5678" --cap-add=NET_ADMIN --device=/dev/net/tun -it n8n-surfshark
 `
+
+### Persistent Storage
+Set env var `N8N_USER_FOLDER` to the mounted volume, so the n8n configs will be kept even the container is destroyed.
